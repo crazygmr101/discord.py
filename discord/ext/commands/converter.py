@@ -421,7 +421,7 @@ class RoleConverter(IDConverter):
         if match:
             result = guild.get_role(int(match.group(1)))
         else:
-            result = discord.utils.get(guild._roles.values(), name=argument)
+            result = discord.utils.get([s.lower for s in guild._roles.values()], name=argument.lower())
 
         if result is None:
             raise RoleNotFound(argument)
